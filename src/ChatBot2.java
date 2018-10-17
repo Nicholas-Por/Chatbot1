@@ -1,4 +1,4 @@
-import com.sun.java.util.jar.pack.Instruction;
+
 
 import java.util.Random;
 import java.util.Scanner;
@@ -48,26 +48,36 @@ public class ChatBot2
 		System.out.println("Hey whats your name?");
 		Scanner getname = new Scanner (System.in);
 		String name = getname.nextLine();
-		System.out.println("Hi " + name + " Do you like RPG games?");
+		return "Hi " + name + ", do you like RPG games?";
 
 	}
 	
 	/**
 	 * Gives a response to a user statement
 	 * 
-	 * @param statement
+	 *  statement
 	 *            the user statement
 	 * @return a response based on the rules given
 	 */
-
+	public void correction()
+	{
+		if (emotion < -1)
+		{
+			emotion = -1;
+		}
+		if (emotion < 1)
+		{
+			emotion = 1;
+		}
+	}
 
 	public String getResponse(String statement)
 	{
 		String response = "";
-		
+		if
 		if (statement.length() == 0)
 		{
-			response = "I think you forgot to actually type anything lol.";
+			response = "I think you forgot to type.";
 		}
 
 		else if (findKeyword(statement, "suck") >= 0)
@@ -77,22 +87,22 @@ public class ChatBot2
 		}
 		else if (findKeyword(statement, "bad") >= 0)
 		{
-			response = "You good?";
+			response = "Why is it bad?";
 			emotion--;
 		}
 		else if (findKeyword(statement, "hate") >= 0)
 		{
-			response = "You good?";
+			response = "You sure you mean hate, its a strong word afterall ain't it?";
 			emotion--;
 		}
 		else if (findKeyword(statement, "good") >= 0)
 		{
-			response = "You good?";
+			response = "Nice";
 			emotion++;
 		}
 		else if (findKeyword(statement, "like") >= 0)
 		{
-			response = "You good?";
+			response = "That's cool, I like games alot.";
 			emotion++;
 		}
 		else if (findKeyword(statement, "levin") >= 0)
@@ -174,7 +184,7 @@ public class ChatBot2
 		}
 		int psn = findKeyword (statement, "I want", 0);
 		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Yo boss what makes you want " + restOfStatement + "?";
+		return "What makes you want " + restOfStatement + "?";
 	}
 	
 	
@@ -304,11 +314,11 @@ public class ChatBot2
 	}
 	
 	private String [] randomNeutralResponses = {"Interesting, tell me more",
-			"Hmmm.",
-			"Do you really think so?",
+			"What consoles do you have? Or do you play on PC?",
+			"",
 			"You don't say.",
-			"It's all boolean to me.",
-			"So, would you like to go for a walk?",
+			"I'm not sure how to respond to that, not that I mean it negatively.",
+			"So what games do you like?",
 			"Could you say that again?"
 	};
 	private String [] randomAngryResponses = {"You put me in a bad mood with your negativity.", "I ain't speaking.", "You realize you upset me right?"};
