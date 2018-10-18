@@ -74,10 +74,23 @@ public class ChatBot2
 	public String getResponse(String statement)
 	{
 		String response = "";
-		if
+
 		if (statement.length() == 0)
 		{
 			response = "I think you forgot to type.";
+		}
+		else if (findKeyword(statement, "favorite") >= 0)
+		{
+			response = "Can you type only the name of your favorite game , if its an RPG I may know it";
+			Scanner test = new Scanner (System.in);
+			String game = test.nextLine();
+			for (int count = 0; count < randomGames.length; count++)
+			{
+				if (game == randomGames[count])
+				{
+					response = "I'm a big fan of " + randomGames[count] + " too! It's actually one of my favorite games!";
+				}
+			}
 		}
 
 		else if (findKeyword(statement, "suck") >= 0)
@@ -110,7 +123,19 @@ public class ChatBot2
 			response = "More like LevinTheDream lol.";
 			emotion++;
 		}
+		else if (findKeyword(statement, "fighting") >= 0)
+		{
+			System.out.println("Maybe you would like to talk to my other friend. He knows about fighting games");
+			ChatBot1 chatbot1 = new ChatBot1();
+			chatbot1.chatLoop(statement);
+		}
+		else if (findKeyword(statement, "shooting") >= 0)
+		{
+			System.out.println("Maybe you would like to talk to my other friend. He knows about shooting games");
+			ChatBot3 chatbot3 = new ChatBot3();
+			chatbot3.chatLoop(statement);
 
+		}
 		// Response transforming I want to statement
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
