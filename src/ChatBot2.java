@@ -12,7 +12,9 @@ import java.util.Scanner;
 public class ChatBot2
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
-	int emotion = 0;
+	//For the sake of simplicity I removed the emotion function because I didn't see how it could play into my program well
+	//The random responses I use are meant to steer the user toward pre programmed paths of conversation
+
 
 
 	/**
@@ -52,25 +54,14 @@ public class ChatBot2
 
 	}
 	
+
 	/**
 	 * Gives a response to a user statement
-	 * 
+	 *
 	 *  statement
 	 *            the user statement
 	 * @return a response based on the rules given
 	 */
-	public void correction()
-	{
-		if (emotion < -1)
-		{
-			emotion = -1;
-		}
-		if (emotion < 1)
-		{
-			emotion = 1;
-		}
-	}
-
 	public String getResponse(String statement)
 	{
 		String response = "";
@@ -96,32 +87,32 @@ public class ChatBot2
 		else if (findKeyword(statement, "suck") >= 0)
 		{
 			response = "You good?";
-                	emotion--;
+
 		}
 		else if (findKeyword(statement, "bad") >= 0)
 		{
 			response = "Why is it bad?";
-			emotion--;
+
 		}
 		else if (findKeyword(statement, "hate") >= 0)
 		{
 			response = "You sure you mean hate, its a strong word afterall ain't it?";
-			emotion--;
+
 		}
 		else if (findKeyword(statement, "good") >= 0)
 		{
 			response = "Nice";
-			emotion++;
+
 		}
 		else if (findKeyword(statement, "like") >= 0)
 		{
 			response = "That's cool, I like games alot.";
-			emotion++;
+
 		}
 		else if (findKeyword(statement, "levin") >= 0)
 		{
 			response = "More like LevinTheDream lol.";
-			emotion++;
+
 		}
 		else if (findKeyword(statement, "fighting") >= 0)
 		{
@@ -327,27 +318,22 @@ public class ChatBot2
 	private String getRandomResponse ()
 	{
 		Random r = new Random ();
-		if (emotion == 0)
-		{	
-			return randomNeutralResponses [r.nextInt(randomNeutralResponses.length)];
-		}
-		if (emotion < 0)
-		{	
-			return randomAngryResponses [r.nextInt(randomAngryResponses.length)];
-		}	
-		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
+		return randomNeutralResponses [r.nextInt(randomNeutralResponses.length)];
+
 	}
 	
 	private String [] randomNeutralResponses = {"Interesting, tell me more",
-			"What consoles do you have? Or do you play on PC?",
-			"",
-			"You don't say.",
-			"I'm not sure how to respond to that, not that I mean it negatively.",
-			"So what games do you like?",
-			"Could you say that again?"
+			"What consoles do you have? Or do you play on PC? I'm not good with talking to people so, maybe just type in PC, or Xbox One, or PS4, or even just Switch. It'll help me understand",
+			"What kind of games do you like?",
+			"Interesting.",
+			"So how's your day?",
+			"Could you say that again?",
+			"Hmm",
+			"Do you like any Bethesda RPG games?",
+			"Elder Scrolls or Fallout?",
+			"That's cool."
+
 	};
-	private String [] randomAngryResponses = {"You put me in a bad mood with your negativity.", "I ain't speaking.", "You realize you upset me right?"};
-	private String [] randomHappyResponses = {"That actually made me smile", "Nice", "Heck yeah dude."};
-	private String [] randomGames = {"Skyrim", "Zelda", "Fallout", "Dark Souls", "Call of Duty", "Halo", ""};
-	private String [] consoles = { "PC", "Xbox One", "Xbox 360", "PS3", "PS4"};
+	private String [] randomGames = {"Skyrim", "Zelda", "Fallout", "Dark Souls", "Call of Duty", "Halo", "Xenoblade","Elder Scrolls", "Oblivion"};
+	private String [] consoles = { "PC", "Xbox One", "Xbox 360", "PS3", "PS4", "Switch"};
 }
